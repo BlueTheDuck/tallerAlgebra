@@ -20,4 +20,9 @@ max m n | m > n = m
         | m < n = n
         | otherwise = m
 
+-- Llamar como `sumatoria 1 10 (\ i n -> n)`
+sumatoria :: Int -> Int -> (Int -> Int -> Int) -> Int
+sumatoria i n f | i < n = (f i n) + sumatoria (i+1) n f
+                | i == n = (f i n)
+
 
