@@ -27,8 +27,12 @@ sonPrimos (a, b) = esPrimo a && esPrimo b
 
 -- Ej 1
 satisfaceGoldbach :: Integer -> Bool
-satisfaceGoldbach 0 = False
-satisfaceGoldbach 1 = False
+{-
+      Corrección: No hacian falta
+      satisfaceGoldbach 0 = False
+      satisfaceGoldbach 1 = False
+-}
+
 satisfaceGoldbach 2 = False
 satisfaceGoldbach n | n_es_par && n_es_suma_primos = True
                     | otherwise = False
@@ -74,6 +78,9 @@ numeroDeDescomposiciones n = numeroDeDescompDesde n 2
       Calcula de forma recursiva la cantidad de tuplas ordenadas, con numeros 
       primos mayores a 2 que al sumarlos dan `n`. Saltea las tuplas cuyo 
       segundo número es menor a `t`
+      -- Correción: `skip` es 0 cuando no se puede descomponer `n` en primos (partiendo desde `t`)
+      por lo que devuelve 0 y termina con la recurción. Cuando no es 0, busca descomponer `n` con un
+      primo >= skip+1
 -}
 numeroDeDescompDesde n t | skip == 0 = 0 
                          | otherwise = 1 + numeroDeDescompDesde n (skip+1)
